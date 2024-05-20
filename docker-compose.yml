@@ -9,7 +9,7 @@ services:
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
-            - '${APP_PORT:-8080}:80' 
+            - '${APP_PORT:-8080}:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
         environment:
             WWWUSER: '${WWWUSER}'
@@ -25,7 +25,7 @@ services:
             - mysql
             - redis
             - meilisearch
-            - mailpit
+            - mailhog
             - selenium
     mysql:
         image: 'mysql/mysql-server:8.0'
@@ -85,11 +85,12 @@ services:
                 - 'http://localhost:7700/health'
             retries: 3
             timeout: 5s
-    mailpit:
-        image: 'axllent/mailpit:latest'
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        platform: linux/amd64
         ports:
-            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
-            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
+            - '1026:1025'  # 1025から1026に変更
+            - '8026:8025'  # 以前に変更したポート
         networks:
             - sail
     selenium:
