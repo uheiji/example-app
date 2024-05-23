@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/tweet' , \App\Http\Controllers\Tweet\IndexController::class)
 ->name('tweet.index');
 Route::middleware('auth')->group(function(){
@@ -35,9 +33,6 @@ Route::middleware('auth')->group(function(){
     Route::delete('/tweet/delete/{tweetId}' , \App\Http\Controllers\Tweet\DeleteController::class)
     ->name('tweet.delete');
 });
-
-
-
 Route::get('/tweet' , \App\Http\Controllers\Tweet\IndexController::class)
 ->name('tweet.index');
 
