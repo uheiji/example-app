@@ -5,7 +5,12 @@
         "watch": "mix watch",
         "hot": "mix watch --hot",
         "prod": "mix --production",
-        "heroku-postbuild":"npm run production"
+        "production": "mix --production",
+        "heroku-postbuild": "npm run production"
+    },
+    "engines": {
+        "node": "20.x",
+        "npm": "10.x"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.2",
