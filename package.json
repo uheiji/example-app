@@ -4,7 +4,8 @@
         "dev": "mix",
         "watch": "mix watch",
         "hot": "mix watch --hot",
-        "prod": "mix --production"
+        "prod": "mix --production",
+        "heroku-postbuild":"npm run production"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.2",
