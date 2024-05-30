@@ -46,4 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/test-error', function () {
+    abort(500, 'Intentional Error for Testing');
+});
+
+
 require __DIR__.'/auth.php';
