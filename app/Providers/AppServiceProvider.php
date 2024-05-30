@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -16,20 +15,25 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(Cloudinary::class, function () {
+            $config = config('cloudinary');
+
+            if (empty($config['cloud_name']) || empty($config['api_key']) || empty($config['api_secret'])) {
+                throw new \Exception('Cloudinary configuration is missing');
+            }
+
             return new Cloudinary([
                 'cloud' => [
-                    'cloud_name' => config('cloudinary.cloud_name'),
-                    'api_key' => config('cloudinary.api_key'),
-                    'api_secret' => config('cloudinary.api_secret')
+                    'cloud_name' => $config['cloud_name'],
+                    'api_key' => $config['api_key'],
+                    'api_secret' => $config['api_secret']
                 ]
             ]);
         });
-        if($this->app->environment('production')){
-            $this->app->bind(ImageManagerInterface::class,
-            CloudinaryImageManager::class);
-        }else{
-            $this->app->bind(ImageManagerInterface::class,
-            LocalImageManager::class);
+
+        if ($this->app->environment('production')) {
+            $this->app->bind(ImageManagerInterface::class, CloudinaryImageManager::class);
+        } else {
+            $this->app->bind(ImageManagerInterface::class, LocalImageManager::class);
         }
     }
 
@@ -38,6 +42,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        require_once app_path('helpers.php');
     }
 }
