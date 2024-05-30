@@ -46,8 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test-error', function () {
-    abort(500, 'Intentional Error for Testing');
+Route::get('/test-log', function () {
+    Log::info('Test log entry');
+    return 'Log entry created';
 });
 
 
