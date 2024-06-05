@@ -22,13 +22,13 @@ class TweetService{
         return $tweet->user_id === $userId;
     }
 
-    public function countYesterdayTweets(): int{
-        return Tweet::whereDate('created_at' , '>=' ,
-        Carbon::yesterday()->toDateTimeString())
-        ->whereDate('created_at' , '<' ,
-        Carbon::today()->toDateTimeString())
-        ->count();
-    }
+    // public function countYesterdayTweets(): int{
+    //     return Tweet::whereDate('created_at' , '>=' ,
+    //     Carbon::yesterday()->toDateTimeString())
+    //     ->whereDate('created_at' , '<' ,
+    //     Carbon::today()->toDateTimeString())
+    //     ->count();
+    // }
 
     public function saveTweet(int $userId , string $content , array $images){
         DB::transaction(function() use ($userId,$content ,$images){

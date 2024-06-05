@@ -45,12 +45,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($newUser));
 
-        Auth::login($newUser);
-        $allUser = User::get();
-        foreach($allUser as $user){
-            $mailer->to($user->email)
-            ->send(new NewsUserIntroduction($user, $newUser));
-        }
+        // Auth::login($newUser);
+        // $allUser = User::get();
+        // foreach($allUser as $user){
+        //     $mailer->to($user->email)
+        //     ->send(new NewsUserIntroduction($user, $newUser));
+        // }
 
 
         return redirect(RouteServiceProvider::HOME);
