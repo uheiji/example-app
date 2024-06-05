@@ -46,10 +46,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test-log', function () {
-    Log::info('Test log entry');
-    return 'Log entry created';
-});
-
 
 require __DIR__.'/auth.php';
